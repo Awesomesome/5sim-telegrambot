@@ -33,5 +33,7 @@ This bot allows users to access information about countries, products, and opera
 Make sure to replace the placeholder values in the `.env` file with your actual Telegram bot token and 5sim API key.
 
 Sample of .env
+
 TELEGRAM_TOKEN= your bot key
+
 SIM_API_KEY= your 5sim api key
