@@ -1,0 +1,3 @@
+## 2024-05-18 - Telegram Keyboard UX Optimization
+**Learning:** Telegram custom keyboards can easily become cramped and take up too much vertical screen space on mobile if structured poorly. A long row of buttons leads to horizontal scrolling or unreadable text. Setting `resize_keyboard=True` makes the keyboard take up much less space. Using arrays of arrays creates grid layouts which are much more readable. Adding emojis gives users quick visual cues to find their desired action faster.
+**Action:** Always structure Telegram `ReplyKeyboardMarkup` elements in logical grids (e.g., 2x2 instead of 1x4), apply emojis for quick scannability, and always use `resize_keyboard=True` for mobile optimization.
