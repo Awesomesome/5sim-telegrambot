@@ -1,0 +1,3 @@
+## 2024-03-20 - Telegram Keyboard Mobile Optimization & Emoji Handling
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) without `resize_keyboard=True` take up too much vertical space on mobile devices, leading to a poor user experience. Furthermore, arranging buttons in logical grids instead of a single wide row is visually more pleasing. When adding emojis to button texts for visual delight, exact string matching in message handlers fails.
+**Action:** Always set `resize_keyboard=True` when instantiating `ReplyKeyboardMarkup`. Organize buttons into a multi-row layout if there are many options. Use the `in` operator (e.g., `if "keyword" in user_choice`) when checking text inputs to gracefully accommodate emojis and slight variations.
