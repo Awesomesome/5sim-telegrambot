@@ -1,0 +1,3 @@
+## 2024-03-21 - Telegram Bot Mobile Keyboard Optimization
+**Learning:** By default, Telegram custom keyboards (`ReplyKeyboardMarkup`) take up the full height of a standard keyboard on mobile, which can unnecessarily obscure the chat history, especially for simple text options or small grids. Additionally, a single wide row with many buttons is hard to read and tap on narrow screens.
+**Action:** When implementing or modifying Telegram custom keyboards, always set `resize_keyboard=True` to ensure the keyboard is optimized for mobile displays. Furthermore, organize buttons into logical grids (e.g., 2x2) rather than single wide rows, and handle text inputs using the `in` operator to gracefully accommodate emojis in the text.
