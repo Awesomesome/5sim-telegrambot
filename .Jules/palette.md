@@ -1,0 +1,3 @@
+## 2024-07-13 - Telegram Keyboard UX Conventions
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) have poor default UX on mobile screens (full height, single wide row). Furthermore, equality checks on keyboard text fail if emojis are added to the buttons.
+**Action:** When creating or modifying Telegram keyboards, always set `resize_keyboard=True` to optimize for mobile screens, organize buttons into logical grids (e.g. 2x2) rather than single wide rows for better spacing, and use the `in` operator when checking inputs to gracefully accommodate emojis.
