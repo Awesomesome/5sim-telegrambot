@@ -1,0 +1,3 @@
+## 2024-05-18 - Telegram Keyboard UX Optimizations
+**Learning:** Telegram mobile layouts can clip single-column lists (like countries or operators) or render them overly long, while emojis on keyboards can break direct string matching logic (`==`) if they are fed back via messages. Additionally, failing to specify `resize_keyboard=True` causes keyboards to occupy excessive vertical space on mobile devices.
+**Action:** Implemented a standard helper to break long datasets into 2-column grids, applied `resize_keyboard=True` across all `ReplyKeyboardMarkup` instances, and replaced string equality checks with `in` matching to gracefully accommodate emoji prefixes.
