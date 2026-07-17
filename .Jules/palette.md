@@ -1,0 +1,3 @@
+## 2026-07-17 - [Telegram Keyboard UX]
+**Learning:** Single wide rows in custom keyboards take up too much vertical space on mobile screens, leading to a poor UX. Hardcoding exact strings for button text matching breaks gracefully accommodating UX improvements like emojis.
+**Action:** When modifying Telegram custom keyboards (`ReplyKeyboardMarkup`), always set `resize_keyboard=True` for mobile optimization, organize buttons into logical grids rather than single wide rows, and check inputs using the `in` operator to gracefully accommodate emojis.
