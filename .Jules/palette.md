@@ -1,0 +1,3 @@
+## 2026-07-20 - Responsive Keyboards & Emoji Affordance
+**Learning:** Telegram custom keyboards can feel broken on mobile if `resize_keyboard=True` isn't set, as they stretch awkwardly. Furthermore, adding emojis to text buttons increases tap target distinguishability but breaks exact string matching or strict regex handlers.
+**Action:** When adding emojis to Telegram button labels, always update the corresponding handlers to use the `in` operator (or relaxed regex) instead of strict equality to handle the extra characters gracefully. Always pass `resize_keyboard=True` to `ReplyKeyboardMarkup`.
