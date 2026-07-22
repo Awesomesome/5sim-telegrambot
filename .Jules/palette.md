@@ -1,0 +1,3 @@
+## 2024-05-18 - Telegram Keyboard UX and Input Resiliency
+**Learning:** Telegram custom keyboards can appear cramped and unoptimized on mobile unless explicitly configured, and adding emojis to keyboard text causes strict exact-match input checks (and strict Regex filters) to fail.
+**Action:** Always set `resize_keyboard=True` when returning a `ReplyKeyboardMarkup`. Organize buttons logically into grids (e.g., 2x2). Instead of strict equality (`==`) or exact Regex matches for user input verification, use the `in` operator (e.g., `'yes' in input`) and rely on `Filters.text & ~Filters.command` in Handlers to safely and flexibly accommodate emojis included alongside standard button text.
