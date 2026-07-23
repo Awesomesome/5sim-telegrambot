@@ -22,8 +22,8 @@ def run_bot():
                 SELECTING_COUNTRY: [MessageHandler(Filters.text & ~Filters.command, select_country)],
                 SELECTING_PRODUCT: [MessageHandler(Filters.text & ~Filters.command, select_product)],
                 SELECTING_OPERATOR: [MessageHandler(Filters.text & ~Filters.command, select_operator)],
-                CONFIRMING_PURCHASE: [MessageHandler(Filters.regex('^(Yes|No)$'), confirm_purchase)],
-                CONFIRMING_CANCEL: [MessageHandler(Filters.regex('^(Yes|No)$'), cancel_order)],
+                CONFIRMING_PURCHASE: [MessageHandler(Filters.text & ~Filters.command, confirm_purchase)],
+                CONFIRMING_CANCEL: [MessageHandler(Filters.text & ~Filters.command, cancel_order)],
             },
             fallbacks=[CommandHandler('cancel', cancel)],
         )
