@@ -1,0 +1,3 @@
+## 2024-05-17 - Optimize Telegram Keyboards & Text Handling
+**Learning:** Mobile keyboards are often cramped when choices are displayed in a single row. Furthermore, users often include emojis in their messages when interacting with bots. Strict matching of text commands or regex fails when emojis are present.
+**Action:** Always set `resize_keyboard=True` and organize options into a 2x2 grid for Telegram `ReplyKeyboardMarkup` to make better use of mobile screen space. Use `Filters.text & ~Filters.command` in ConversationHandler and check for substrings with `in` operator (e.g. `'yes' in update.message.text.lower()`) rather than strict equality to gracefully handle emojis added by users.
