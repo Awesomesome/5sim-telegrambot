@@ -1,0 +1,3 @@
+## 2024-05-24 - Mobile Optimized & Emoji Resilient Keyboards
+**Learning:** Telegram custom keyboards can appear cramped or require scrolling on mobile devices if they consist of long, single rows of text buttons. Additionally, exact string matching in message handlers fails when emojis are added to button labels for visual flair.
+**Action:** When creating custom keyboards in `python-telegram-bot`, use logical multi-row grids (like 2x2) and set `resize_keyboard=True` to adapt to mobile screens. Replace strict regex matching like `Filters.regex('^(Yes|No)$')` with `Filters.text & ~Filters.command` and use the `in` operator in python (`if 'yes' in text.lower():`) to make the bot resilient to button text that includes emojis.
