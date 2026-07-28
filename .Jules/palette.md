@@ -1,0 +1,3 @@
+## 2024-07-28 - Flexible Text Matching & Grid Keyboards for Mobile
+**Learning:** Using strict string matching (like regex `^(Yes|No)$` or `== 'yes'`) limits the interface's ability to gracefully handle users appending emojis to text inputs. Keyboard sizes on mobile need to be constrained, and 1-dimensional lists for multiple buttons scale poorly visually.
+**Action:** When handling Telegram `ReplyKeyboardMarkup` custom keyboards, use `.startswith()` or equivalent partial matching instead of strict equivalence checks to parse conversational user input. Use `resize_keyboard=True` consistently across replies. Group buttons into logical 2D grids (e.g., 2x2 instead of 1x4) for easier visual scanning and better screen real estate usage.
