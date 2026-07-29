@@ -1,0 +1,3 @@
+## 2024-05-18 - Telegram Keyboard and Emoji Matching UX
+**Learning:** Hardcoded string equivalence (`==`) and strict Regex fails when users add emojis, which is common in Telegram. Also, mobile usability suffers greatly without `resize_keyboard=True` and logical row/column organization. Furthermore, using partial matching like `.startswith()` requires careful list sorting (like sorting country names by length descending) to prevent false positives when strings overlap (e.g., Niger matching Nigeria).
+**Action:** Always include `resize_keyboard=True` for Telegram custom keyboards, organize main menus in logical grids, avoid strict regex for text states, and use `.startswith()` with proper length-based sorting for flexible emoji-aware matching.
