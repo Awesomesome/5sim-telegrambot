@@ -1,0 +1,3 @@
+## 2024-08-04 - Keyboard Layout and Sizing in Telegram Bots
+**Learning:** Telegram custom keyboards can be overwhelming and space-consuming on mobile devices if not properly sized and organized. Without `resize_keyboard=True`, keyboards occupy the entire height of the screen, creating a poor user experience. Additionally, single-column lists for main menus can be inefficient use of space.
+**Action:** When creating `ReplyKeyboardMarkup` in python-telegram-bot, always use `resize_keyboard=True` to ensure mobile-friendly sizing. Furthermore, group main menu options into a logical grid (e.g., 2x2) rather than a single column to improve readability and reduce scrolling.
