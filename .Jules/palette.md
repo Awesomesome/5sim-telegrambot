@@ -1,0 +1,3 @@
+## 2024-05-17 - Mobile Keyboard Resizing and Input Resilience
+**Learning:** Users on mobile devices struggle with Telegram custom keyboards that aren't resized properly, as they consume too much screen real estate. Also, Telegram input parsing needs to account for users adding emojis to text choices when using `Filters.text`.
+**Action:** Use `resize_keyboard=True` on all `ReplyKeyboardMarkup` instances. Transition from strict regex (`Filters.regex`) to generic text filters (`Filters.text & ~Filters.command`) coupled with `.lower().startswith(...)` string matching to gracefully handle user inputs with appended emojis.
