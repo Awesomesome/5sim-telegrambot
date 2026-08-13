@@ -1,0 +1,3 @@
+## 2024-05-18 - Telegram Custom Keyboard Sizing & Partial Matching
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) take up too much vertical screen space on mobile unless `resize_keyboard=True` is explicitly passed. Additionally, when using emojis in button text to enhance visual cues, strict text matching or `Filters.regex('^(Yes|No)$')` will fail.
+**Action:** Always set `resize_keyboard=True` when returning custom keyboards. Use `.startswith()` in string comparisons and `Filters.text & ~Filters.command` in ConversationHandlers to allow for flexible partial matching when emojis are appended to button text.
