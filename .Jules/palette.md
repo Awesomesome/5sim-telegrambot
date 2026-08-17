@@ -1,0 +1,3 @@
+## 2024-05-17 - Telegram Keyboard Mobile Optimization
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) default to full-width and single-column rendering, which causes severe usability issues (excessive scrolling, hidden chat) when displaying long lists of options like countries or operators.
+**Action:** Always set `resize_keyboard=True` to adapt the keyboard size to the content, and use chunking utilities (e.g., `chunk_keyboard_list`) to group list items into multi-column rows (e.g., 2 or 3 items per row) to optimize screen real estate and reduce scrolling effort on mobile devices.
