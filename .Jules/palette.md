@@ -1,0 +1,3 @@
+## 2024-08-20 - Telegram Keyboard Mobile Optimization
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) default to full height, which pushes messages out of view on mobile devices and causes excessive scrolling. Additionally, single-column lists of countries/products are very tedious to scroll through.
+**Action:** Always set `resize_keyboard=True` when using `ReplyKeyboardMarkup` to make it fit its content natively, and organize long single-column lists (like countries or products) into multi-column grids (e.g., chunked into pairs) to improve scannability and reduce scrolling.
