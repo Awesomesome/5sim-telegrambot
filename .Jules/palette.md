@@ -1,0 +1,3 @@
+## 2026-08-27 - [Telegram Mobile Keyboard Optimization]
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) default to taking up the full vertical height of the native keyboard on mobile devices, which consumes unnecessary screen real estate when there are only a few buttons. Furthermore, long single-column lists force excessive scrolling.
+**Action:** Always apply `resize_keyboard=True` to custom keyboards so they dynamically fit their contents. For lists exceeding a few items, implement logic (e.g., `chunk_list`) to partition the buttons into multi-column grids for improved visual hierarchy and reduced scroll fatigue.
