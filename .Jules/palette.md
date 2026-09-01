@@ -1,0 +1,3 @@
+## 2024-03-24 - Improve Keyboard Accessibility on Mobile
+**Learning:** Telegram custom keyboards built with `ReplyKeyboardMarkup` without `resize_keyboard=True` default to filling the entire bottom half of the screen, hiding message history and creating an intrusive UX. Additionally, single-column flat lists for long dynamic option sets (like countries or products) force excessive scrolling.
+**Action:** When implementing Telegram `ReplyKeyboardMarkup`, always use `resize_keyboard=True` to adapt button heights to their content. For lists longer than a few items, implement logic (e.g., `chunk_list(lst, 2)`) to chunk the flat lists into multi-column grids, preserving vertical screen real estate.
