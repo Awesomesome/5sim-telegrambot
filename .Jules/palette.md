@@ -1,0 +1,1 @@
+## 2024-05-18 - Mobile Keyboard Optimization\n**Learning:** Telegram custom keyboards can be overwhelming on mobile if they are just one long column, or take up too much vertical space.\n**Action:** Use resize_keyboard=True and logically chunk lists into multi-column grids for all ReplyKeyboardMarkup instances.
