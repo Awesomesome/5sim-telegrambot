@@ -1,0 +1,3 @@
+## 2026-09-09 - Telegram Custom Keyboard UX Optimization
+**Learning:** By default, Telegram's custom keyboards are presented as a single column which can require excessive scrolling on mobile. Adding `resize_keyboard=True` and formatting single-column lists into multi-column chunks significantly improves navigation. Additionally, avoiding strict regex or equivalence matching for text choices allows users to tap buttons that might inject emojis without failing the handler.
+**Action:** When designing Telegram bots, always construct `ReplyKeyboardMarkup` with chunked lists for large sets of options, ensure `resize_keyboard=True` is set, and use flexible matching (like `.startswith()`) in handlers.

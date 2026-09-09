@@ -3,11 +3,15 @@ from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import CallbackContext, ConversationHandler
 from api_client import SimAPIClient
 import logging
+from utils import chunk_list
 
 CHOOSING, SELECTING_COUNTRY, SELECTING_OPERATOR, SELECTING_PRODUCT, CONFIRMING_PURCHASE, CONFIRMING_CANCEL = range(6)
 
 def get_main_keyboard():
-    return ReplyKeyboardMarkup([['Buy Number', 'Check Balance', 'Show Messages', 'Cancel Order']], one_time_keyboard=False)
+    return ReplyKeyboardMarkup([
+        ['Buy Number', 'Check Balance'],
+        ['Show Messages', 'Cancel Order']
+    ], resize_keyboard=True, one_time_keyboard=False)
 
 def start(update: Update, context: CallbackContext) -> int:
     update.message.reply_text(
@@ -18,24 +22,25 @@ def start(update: Update, context: CallbackContext) -> int:
 
 def handle_choice(update: Update, context: CallbackContext) -> int:
     user_choice = update.message.text.lower()
-    if user_choice == 'buy number':
+    if user_choice.startswith('buy number'):
         countries = SimAPIClient.get_countries()
         if countries:
-            country_keyboard = [[countries[country]['text_en']] for country in countries]
+            country_list = [countries[country]['text_en'] for country in countries]
+            country_keyboard = chunk_list(country_list, 3)
             update.message.reply_text(
                 'Please select a country:',
-                reply_markup=ReplyKeyboardMarkup(country_keyboard, one_time_keyboard=True)
+                reply_markup=ReplyKeyboardMarkup(country_keyboard, resize_keyboard=True, one_time_keyboard=True)
             )
             logging.info(f"Presenting countries to user. First few: {country_keyboard[:5]}")
             return SELECTING_COUNTRY
         else:
             update.message.reply_text('Unable to fetch countries. Please try again later.', reply_markup=get_main_keyboard())
             return CHOOSING
-    elif user_choice == 'check balance':
+    elif user_choice.startswith('check balance'):
         return check_balance(update, context)
-    elif user_choice == 'show messages':
+    elif user_choice.startswith('show messages'):
         return show_messages(update, context)
-    elif user_choice == 'cancel order':
+    elif user_choice.startswith('cancel order'):
         return confirm_cancel_order(update, context)
     else:
         update.message.reply_text('Invalid choice. Please try again.', reply_markup=get_main_keyboard())
@@ -61,8 +66,10 @@ def select_country(update: Update, context: CallbackContext) -> int:
     
     if country_code is None:
         logging.warning(f"Invalid country selection: {selected_country}")
+        country_list = [countries[c]['text_en'] for c in countries]
+        country_keyboard = chunk_list(country_list, 3)
         update.message.reply_text('Invalid country selection. Please choose from the provided options.', 
-                                  reply_markup=ReplyKeyboardMarkup([[countries[c]['text_en']] for c in countries], one_time_keyboard=True))
+                                  reply_markup=ReplyKeyboardMarkup(country_keyboard, resize_keyboard=True, one_time_keyboard=True))
         return SELECTING_COUNTRY
     
     logging.info(f"Selected country code: {country_code}")
@@ -74,10 +81,10 @@ def select_country(update: Update, context: CallbackContext) -> int:
     if prices and country_code in prices:
         products = list(prices[country_code].keys())
         logging.info(f"Available products: {products}")
-        product_keyboard = [[product] for product in products]
+        product_keyboard = chunk_list(products, 3)
         update.message.reply_text(
             'Please select a product:',
-            reply_markup=ReplyKeyboardMarkup(product_keyboard, one_time_keyboard=True)
+            reply_markup=ReplyKeyboardMarkup(product_keyboard, resize_keyboard=True, one_time_keyboard=True)
         )
         return SELECTING_PRODUCT
     else:
@@ -92,11 +99,11 @@ def select_product(update: Update, context: CallbackContext) -> int:
     prices = SimAPIClient.get_prices(country=country, product=product)
     if prices and country in prices and product in prices[country]:
         operators = list(prices[country][product].keys())
-        operator_keyboard = [[operator] for operator in operators]
+        operator_keyboard = chunk_list(operators, 3)
         operator_keyboard.append(['Any'])
         update.message.reply_text(
             'Please select an operator:',
-            reply_markup=ReplyKeyboardMarkup(operator_keyboard, one_time_keyboard=True)
+            reply_markup=ReplyKeyboardMarkup(operator_keyboard, resize_keyboard=True, one_time_keyboard=True)
         )
         return SELECTING_OPERATOR
     else:
@@ -117,7 +124,7 @@ def select_operator(update: Update, context: CallbackContext) -> int:
             f'Available: {price_info["count"]}\n'
             f'Success rate: {price_info["rate"]}%\n'
             f'Do you want to proceed?',
-            reply_markup=ReplyKeyboardMarkup([['Yes', 'No']], one_time_keyboard=True)
+            reply_markup=ReplyKeyboardMarkup([['Yes', 'No']], resize_keyboard=True, one_time_keyboard=True)
         )
         return CONFIRMING_PURCHASE
     else:
@@ -125,7 +132,7 @@ def select_operator(update: Update, context: CallbackContext) -> int:
         return CHOOSING
 
 def confirm_purchase(update: Update, context: CallbackContext) -> int:
-    if update.message.text.lower() == 'yes':
+    if update.message.text.lower().startswith('yes'):
         country = context.user_data['country']
         operator = context.user_data['operator']
         product = context.user_data['product']
@@ -174,12 +181,12 @@ def confirm_cancel_order(update: Update, context: CallbackContext) -> int:
         update.message.reply_text('You don\'t have an active order to cancel.', reply_markup=get_main_keyboard())
         return CHOOSING
 
-    keyboard = ReplyKeyboardMarkup([['Yes', 'No']], one_time_keyboard=True)
+    keyboard = ReplyKeyboardMarkup([['Yes', 'No']], resize_keyboard=True, one_time_keyboard=True)
     update.message.reply_text(f'Are you sure you want to cancel the order for number {number}?', reply_markup=keyboard)
     return CONFIRMING_CANCEL
 
 def cancel_order(update: Update, context: CallbackContext) -> int:
-    if update.message.text.lower() == 'yes':
+    if update.message.text.lower().startswith('yes'):
         order_id = context.user_data.get('order_id')
         logging.info(f"Attempting to cancel order ID: {order_id}")
         if order_id:
