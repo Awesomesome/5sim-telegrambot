@@ -1,0 +1,3 @@
+## 2026-09-10 - Telegram Custom Keyboard Optimization
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) can present significant accessibility and UX issues on mobile devices if they are rendered as single-column lists, requiring excessive scrolling. Additionally, if the keyboard is not resized, it can obscure the chat interface.
+**Action:** Always set `resize_keyboard=True` for mobile optimization. Organize buttons into logical grids, specifically chunking long single-column lists into multi-column grids (e.g., using a `chunk_list` helper function) to prevent excessive scrolling and improve discoverability.
