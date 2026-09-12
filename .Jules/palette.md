@@ -1,0 +1,3 @@
+## 2024-05-25 - Telegram Multi-column and Responsive Keyboards
+**Learning:** Single-column lists with long options in Telegram custom keyboards lead to excessive scrolling on mobile devices, diminishing the user experience. Additionally, omitting `resize_keyboard=True` causes keyboards to take up excessive screen space on smaller viewports.
+**Action:** When modifying Telegram custom keyboards (`ReplyKeyboardMarkup`), organize long lists into logical multi-column grids (using tools like `chunk_list(lst, chunk_size)`) to condense the options vertically. Always set `resize_keyboard=True` to optimize the keyboard real estate on mobile interfaces.
