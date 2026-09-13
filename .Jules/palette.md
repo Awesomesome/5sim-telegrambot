@@ -1,0 +1,3 @@
+## 2024-11-20 - Telegram Keyboard UX Optimization
+**Learning:** Setting `resize_keyboard=True` is critical for Telegram `ReplyKeyboardMarkup` on mobile devices. Long single-column lists can require excessive scrolling, making multi-column grids a much better pattern for accessibility and usability when presenting options like countries or products.
+**Action:** Always chunk long lists into multi-column arrays (e.g., using a `chunk_list` helper) and ensure `resize_keyboard=True` is applied to all custom Telegram keyboards.
