@@ -1,0 +1,3 @@
+## 2024-06-25 - Telegram Keyboard UX Optimization
+**Learning:** Long single-column lists in Telegram custom keyboards require excessive scrolling, degrading mobile UX. Additionally, `ReplyKeyboardMarkup` without `resize_keyboard=True` takes up too much screen space on mobile devices. Emjois in user text inputs break strict equivalency or regex checks for simple confirmations (like Yes/No).
+**Action:** Chunked list arrays into multi-column grids (like 3 columns for countries/products/operators and 2x2 for main menus). Added `resize_keyboard=True` to all `ReplyKeyboardMarkup` instances. Updated state handlers and text confirmation logic to use `Filters.text & ~Filters.command` and `.startswith('yes')` to gracefully accommodate text alongside emojis.
