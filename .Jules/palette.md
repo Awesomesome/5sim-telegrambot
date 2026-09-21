@@ -1,0 +1,3 @@
+## 2024-09-21 - Telegram Mobile Keyboard Optimization
+**Learning:** Long single-column lists in Telegram custom keyboards (like country/operator lists) create significant UX friction by forcing excessive scrolling on mobile devices. Additionally, keyboards lacking `resize_keyboard=True` consume too much vertical screen real estate, further degrading the chat experience.
+**Action:** When implementing `ReplyKeyboardMarkup` for mobile interfaces, always set `resize_keyboard=True` to minimize height and chunk lengthy single-column lists into multi-column grids (e.g., using a helper like `chunk_list(lst, 3)`) to fit more options without scrolling.
