@@ -1,0 +1,3 @@
+## 2024-09-24 - Telegram Custom Keyboard Optimization
+**Learning:** Telegram's custom keyboards (using `ReplyKeyboardMarkup`) can become unwieldy on mobile devices if they contain long, single-column lists. Without `resize_keyboard=True`, buttons take up a large portion of the screen, forcing users to scroll excessively and resulting in poor UX.
+**Action:** When dynamically generating large lists of options (like countries, products, or operators), use a utility function to chunk the lists into multi-column grids (e.g., rows of 3). Always include `resize_keyboard=True` when instantiating `ReplyKeyboardMarkup` to optimize button size for mobile displays.
