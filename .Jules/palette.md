@@ -1,0 +1,3 @@
+## 2024-05-18 - Improve Telegram Custom Keyboard Layouts
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) can be difficult to navigate on mobile devices when buttons are presented as long single-column lists. This leads to excessive scrolling and a poor user experience. Additionally, failing to specify `resize_keyboard=True` makes the keyboard take up unnecessary screen space instead of adapting to the optimal size.
+**Action:** When implementing or modifying Telegram custom keyboards, always chunk long lists of options (like countries or products) into multi-column grids using a utility function like `chunk_list`. Always ensure `resize_keyboard=True` is set on the `ReplyKeyboardMarkup` instance to ensure the keyboard is responsive and mobile-friendly.
