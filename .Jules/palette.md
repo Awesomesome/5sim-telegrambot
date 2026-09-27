@@ -1,0 +1,3 @@
+## 2024-06-25 - Telegram Mobile Keyboard Optimization
+**Learning:** Telegram custom keyboards can easily become unusable on mobile devices if they contain long, single-column lists (causing excessive scrolling) or fail to set `resize_keyboard=True` (taking up too much screen real estate).
+**Action:** Always use `resize_keyboard=True` for `ReplyKeyboardMarkup` to optimize for mobile screens. Additionally, group long lists of options (e.g., countries, operators) into multi-column grids (like a 2-column layout) using a helper like `chunk_list` to improve scannability and reduce the need for excessive scrolling.
