@@ -1,0 +1,3 @@
+## 2024-03-24 - Telegram Custom Keyboard Optimization
+**Learning:** Telegram custom keyboards can be unwieldy on mobile devices if they contain long, single-column lists. Additionally, users often include emojis in their text responses, which breaks strict regex matching or exact string equality (`==`) in message handlers.
+**Action:** When implementing `ReplyKeyboardMarkup`, always use `resize_keyboard=True` to optimize for mobile. Organize long lists into multi-column grids by chunking the arrays. To handle user input flexibly, especially for "Yes/No" confirmations, use `Filters.text & ~Filters.command` in `ConversationHandler` and `.startswith()` in the callback logic rather than exact matching or strict regex.
