@@ -1,0 +1,3 @@
+## 2024-05-15 - Improve Telegram custom keyboards
+**Learning:** Telegram custom keyboards can be overwhelming and visually unappealing if they present long lists (like country selections) in a single column or if they are not explicitly resized to optimize vertical screen space. Standard arrays without nested structure create long single columns.
+**Action:** When creating `ReplyKeyboardMarkup` instances in `python-telegram-bot`, organize long lists into multi-column chunks (e.g., using a custom `chunk_list` utility yielding 3 items per row). Always pass `resize_keyboard=True` to improve accessibility and visual hierarchy on mobile screens. Furthermore, alphabetizing options allows users to quickly scan and locate items in chunked grids.
