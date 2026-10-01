@@ -1,0 +1,3 @@
+## 2026-10-01 - Mobile-Friendly Telegram Keyboards
+**Learning:** Telegram's default custom keyboards take up significant screen real estate and lists render as long single columns requiring excessive scrolling, degrading UX. Furthermore, users often accidentally include emojis in keyboard responses, which breaks strict string/regex matching.
+**Action:** Always use `resize_keyboard=True` on `ReplyKeyboardMarkup`. Pre-sort and chunk long arrays (like countries/operators) into multi-column grids (e.g. 2 columns). In `ConversationHandler` and step functions, avoid strict string/regex match and use partial matching like `.startswith()` to resiliently parse input that might contain trailing emojis.
