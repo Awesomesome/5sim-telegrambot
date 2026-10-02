@@ -1,0 +1,3 @@
+## 2023-11-20 - Telegram Custom Keyboards
+**Learning:** Telegram custom keyboards can be overwhelming and visually unappealing when presenting a long single-column list of options (like countries, operators, or products). Additionally, the default keyboard size often occupies too much screen space on mobile devices.
+**Action:** When working with Telegram custom keyboards (`ReplyKeyboardMarkup`), always use `resize_keyboard=True` for mobile optimization. Organize buttons into logical grids, specifically chunking long single-column lists into multi-column grids (e.g., using a helper function like `chunk_list(lst, chunk_size)`) to prevent excessive scrolling and aid scannability.
