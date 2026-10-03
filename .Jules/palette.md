@@ -1,0 +1,3 @@
+## 2024-10-03 - Telegram Mobile Keyboard Optimization
+**Learning:** Telegram's custom keyboards (`ReplyKeyboardMarkup`) can take up excessive screen real estate on mobile devices if not configured properly. Specifically, long single-column lists (like countries or operators) require excessive scrolling and are poorly scannable, and failing to set `resize_keyboard=True` causes the custom keyboard to stretch vertically.
+**Action:** When working with Telegram bots, always set `resize_keyboard=True` on `ReplyKeyboardMarkup` to optimize for mobile. For long lists of options (like countries or products), chunk the single list into multi-column grids (e.g., 2 or 3 items per row) and alphabetize them to drastically improve scannability and UX.
