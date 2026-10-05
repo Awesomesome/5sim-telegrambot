@@ -1,0 +1,3 @@
+## 2024-10-05 - Keyboard Layout & Resize
+**Learning:** Telegram custom keyboards built with `ReplyKeyboardMarkup` by default can take up significant screen space, particularly on mobile devices. When listing single column grids, long lists of items require significant scrolling and make it hard for users to quickly scan.
+**Action:** When building custom keyboards with `ReplyKeyboardMarkup`, always set `resize_keyboard=True` to optimize for mobile. Use `chunk_list` function to structure single-column lists (like countries, products, operators) into multi-column grids (like 2-3 columns) to improve scannability and reduce scrolling.
