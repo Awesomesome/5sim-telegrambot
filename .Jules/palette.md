@@ -1,0 +1,3 @@
+## $(date +%Y-%m-%d) - Optimize Telegram Keyboard Menus
+**Learning:** Telegram custom keyboards can often overwhelm the UI or require excessive scrolling if they contain long single-column lists. This directly impacts mobile scannability and screen real estate.
+**Action:** When creating `ReplyKeyboardMarkup` arrays, chunk long lists (like countries, products, or operators) into multi-column grids (e.g., using `chunk_list` for rows of 3). Always use `resize_keyboard=True` to adapt the keyboard size optimally for mobile devices. Ensure alphabetical sorting to help users locate options quickly in the grid.
