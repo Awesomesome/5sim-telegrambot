@@ -1,0 +1,3 @@
+## 2024-10-07 - Optimize Telegram Reply Keyboards for Mobile UX
+**Learning:** Telegram custom reply keyboards can easily span past the viewable screen space on mobile devices if they contain long lists of single items (like countries or products) or lack formatting. Additionally, without explicit sizing, the UI can feel clunky.
+**Action:** When building Telegram custom keyboards (`ReplyKeyboardMarkup`), always set `resize_keyboard=True` to adapt the keyboard height to fit mobile screens. For long arrays of options, ensure the list is sorted alphabetically to aid scannability, and chunk the items into a multi-column grid (e.g., 2 items per row) to prevent excessive scrolling and drastically improve UI layout.
