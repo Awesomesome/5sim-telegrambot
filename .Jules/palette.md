@@ -1,0 +1,3 @@
+## 2026-10-09 - [Telegram Keyboard UX Optimization]
+**Learning:** Telegram custom keyboards can quickly become unusable on mobile if long, single-column lists are not chunked or if `resize_keyboard=True` is not set, which causes the keyboard to take up excessive vertical screen space. Additionally, strict regex or string matching causes frustration when users respond with emojis along with their text (e.g. "Yes 👍").
+**Action:** Always set `resize_keyboard=True` for Telegram `ReplyKeyboardMarkup`, chunk long lists into multi-column grids (e.g., 3 columns), and use partial matching like `.startswith()` combined with `Filters.text & ~Filters.command` to gracefully handle emoji-appended inputs.
