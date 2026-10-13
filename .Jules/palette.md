@@ -1,0 +1,3 @@
+## 2024-05-15 - Telegram Custom Keyboard Layout & Mobile Optimization
+**Learning:** Long single-column lists in Telegram custom keyboards create excessive scrolling and poor scannability on mobile devices. Additionally, failing to set `resize_keyboard=True` results in overly large buttons that obscure the chat history.
+**Action:** Always organize logical lists (countries, products, operators) into multi-column grids using a chunking utility (e.g., chunk size of 3). Alphabetize these lists for easier discovery. Additionally, always pass `resize_keyboard=True` as a keyword argument (after the keyboard array positional argument) to `ReplyKeyboardMarkup` to ensure the keyboard scales appropriately on mobile screens.
