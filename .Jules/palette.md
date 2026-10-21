@@ -1,0 +1,3 @@
+## 2024-10-21 - Telegram Custom Keyboard Layout Optimization
+**Learning:** Telegram custom keyboards (`ReplyKeyboardMarkup`) presented as single, long columns severely degrade scannability and increase mobile scrolling overhead. Presenting options randomly or purely by internal data order frustrates users who are scanning for known values.
+**Action:** Always sort user-facing options alphabetically for predictable findability, chunk long lists into multi-column grids (using a helper like `chunk_list`), and set `resize_keyboard=True` to ensure the keyboard respects the screen's safe area on mobile devices.
