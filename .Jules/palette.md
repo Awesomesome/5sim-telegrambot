@@ -1,0 +1,3 @@
+## 2024-10-26 - Telegram Keyboard UX Optimization
+**Learning:** Long single-column lists in Telegram custom keyboards create excessive scrolling and poor scannability on mobile, while missing `resize_keyboard=True` makes buttons unnecessarily tall. Strict regex filtering also breaks if users type emojis along with their text.
+**Action:** Always sort user-facing options alphabetically, chunk long lists into multi-column grids (e.g., using `chunk_list`), add `resize_keyboard=True` to all `ReplyKeyboardMarkup` instances, and use `.startswith()` with `Filters.text & ~Filters.command` instead of strict string matching for text inputs.
