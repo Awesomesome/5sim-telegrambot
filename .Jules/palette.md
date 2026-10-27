@@ -1,0 +1,3 @@
+## 2024-05-18 - Mobile-Optimized Telegram Keyboards
+**Learning:** Long single-column lists in Telegram custom keyboards cause excessive scrolling on mobile devices and reduce scannability. Not setting `resize_keyboard=True` results in oversized buttons that take up too much screen space. Strict regex limits user input flexibility when emojis are used.
+**Action:** Always sort user-facing options alphabetically for findability, chunk long lists into multi-column grids (e.g., 2 or 3 columns), and set `resize_keyboard=True` to optimize the interface for mobile users. Prefer `Filters.text & ~Filters.command` with `.startswith()` checks to gracefully handle text with emojis.
