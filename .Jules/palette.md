@@ -1,0 +1,3 @@
+## 2024-05-24 - Telegram Keyboard UX & A11y Improvements
+**Learning:** Single-column lists on Telegram custom keyboards require excessive scrolling, reducing scannability. Alphabetizing and chunking options into grids significantly improves usability. Default affirmative-first confirmations can lead to destructive actions. Strict string/regex matching fails gracefully when users append emojis to replies.
+**Action:** Always use `resize_keyboard=True`, sort strings, and chunk them via `chunk_list` for multi-column grids. Implement defensive UX by structuring confirmations as `['No', 'Yes']`. Use `.startswith()` and `Filters.text & ~Filters.command` instead of strict matching to handle mixed text/emoji inputs.
