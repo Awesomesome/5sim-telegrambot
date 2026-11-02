@@ -1,0 +1,3 @@
+## 2024-05-18 - Telegram Keyboard Layouts and Defensive Confirmations
+**Learning:** Organizing single-column Telegram keyboards into sorted multi-column grids drastically reduces scrolling fatigue. Also, partial matching on user input (e.g. `.startswith()`) gracefully handles unexpected emojis next to button text. Reordering confirm actions defensively (`['No', 'Yes']`) reduces accidental clicks.
+**Action:** Always use `resize_keyboard=True`, alphabetize non-confirm options, chunk long lists into multi-column arrays, and apply partial string matching for conversational handlers rather than strict regex.
