@@ -1,0 +1,3 @@
+## 2024-06-12 - Telegram Keyboard Layouts and Defensive Actions
+**Learning:** Long single-column lists in Telegram custom keyboards cause excessive scrolling and hinder scannability. Additionally, placing destructive actions like 'Yes' before 'No' in confirmation dialogs can lead to accidental data loss. Strict string matching for confirmations can break if users include text alongside emojis.
+**Action:** Chunk long lists into multi-column grids, sort user-facing options alphabetically for findability, set `resize_keyboard=True` for mobile optimization, place non-destructive 'No' options before 'Yes' (`[['No', 'Yes']]`) in confirmation dialogs, and use partial matching like `.lower().startswith('yes')` in handlers.
