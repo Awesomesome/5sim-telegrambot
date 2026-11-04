@@ -1,0 +1,3 @@
+## 2024-05-18 - Keyboard Layout and Graceful Degradation
+**Learning:** Long single-column lists in Telegram custom keyboards require excessive scrolling, degrading UX and accessibility. strict regex like `Filters.regex('^(Yes|No)$')` paired with strict `==` checking is fragile because user inputs often contain trailing emojis when triggered from third-party clients.
+**Action:** Used a `chunk_list(lst, 2)` helper to map flat options into a 2-column grid. Swapped `Filters.regex` to `Filters.text & ~Filters.command` in `bot.py` and implemented `.lower().startswith('yes')` in `handlers.py` to allow graceful degradation.
