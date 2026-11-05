@@ -1,0 +1,3 @@
+## 2024-11-05 - Optimize Telegram Custom Keyboards for Mobile and Scannability
+**Learning:** Single-column lists in Telegram custom keyboards cause excessive scrolling on mobile. Users struggle to find options when lists are unorganized, and destructive actions need defensive ordering to prevent accidental clicks. Mobile optimization requires `resize_keyboard=True`.
+**Action:** Always alphabetize user-facing options. Chunk long lists into multi-column grids using `chunk_list`. Always pass `resize_keyboard=True` to `ReplyKeyboardMarkup`. Order destructive confirmations deliberately as `['No', 'Yes']`. Ensure the keyboard array is the first positional argument.
