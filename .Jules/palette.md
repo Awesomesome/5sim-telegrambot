@@ -1,0 +1,3 @@
+## 2024-05-24 - [Keyboard Mobile Optimization and Defensive UX]
+**Learning:** Long, unchunked lists in Telegram custom keyboards cause excessive scrolling on mobile, while lacking `resize_keyboard=True` makes the keyboard unnecessarily large. Furthermore, destructive actions without defensively ordered confirmation buttons (e.g., putting "Yes" first) can lead to accidental misclicks.
+**Action:** Always chunk lengthy options into multi-column grids, enable `resize_keyboard=True` for mobile optimization, sort alphabetical lists for scannability, and order confirmation buttons as `['No', 'Yes']` defensively.
