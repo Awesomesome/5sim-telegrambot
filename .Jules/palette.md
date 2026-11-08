@@ -1,0 +1,3 @@
+## 2024-11-08 - Keyboard Layout Optimization
+**Learning:** Long single-column lists in Telegram custom keyboards lead to excessive scrolling and poor scannability. Additionally, strict string matching breaks if users append text or if emojis are introduced later. Mobile users also need keyboards resized appropriately. Destructive actions need defensive UX.
+**Action:** Always set `resize_keyboard=True` for `ReplyKeyboardMarkup`. Organize options into multi-column grids using `chunk_list` and sort alphabetically for findability. Use `.startswith()` on user input and `Filters.text & ~Filters.command` in Handlers rather than strict matches. Use `['No', 'Yes']` ordering for confirmations.
