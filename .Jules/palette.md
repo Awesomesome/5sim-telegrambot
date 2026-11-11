@@ -1,0 +1,3 @@
+## 2024-05-18 - Telegram Custom Keyboard Layout UX
+**Learning:** Telegram custom keyboards present poor UX on mobile when long lists are rendered as a single column (requiring excessive scrolling) and without `resize_keyboard=True` (making buttons unnecessarily tall). Destructive or consequential actions should use defensive UX by sorting the buttons deliberately as `['No', 'Yes']`.
+**Action:** When generating `ReplyKeyboardMarkup`, always pass `resize_keyboard=True`, alphabetize and format long lists into multi-column chunks using a helper (e.g. `chunk_list(lst, 2)`), and present cancellation or destructive action buttons with 'No' first.
